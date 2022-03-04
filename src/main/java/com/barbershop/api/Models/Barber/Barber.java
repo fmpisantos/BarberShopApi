@@ -10,10 +10,14 @@ import java.util.Date;
 @Entity
 @Table(name = "Barber")
 public class Barber extends BaseModel {
-    @Column
+    @Column(name="Nif")
     public int nif;
-    @Column
-    public String name, email, phone;
+    @Column(name="Name")
+    public String name;
+    @Column(name="Email")
+    public String email;
+    @Column(name="Phone")
+    public String phone;
 
     public Barber(boolean active, int nif, String name, String email, String phone) {
         super(new Date(), new Date(), active);
