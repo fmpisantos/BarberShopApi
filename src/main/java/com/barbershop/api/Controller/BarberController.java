@@ -18,15 +18,23 @@ public class BarberController {
 
     //region Get
     @RequestMapping(value ="/barbers",method = RequestMethod.GET)
-    public List<Barber> getAllBarbers(){
-        return this.barberRepository.findAll();
+    public /*List<Barber>*/ String getAllBarbers(){
+        try {
+            return this.barberRepository.findAll().toString();
+        }catch(Exception e){
+            return e.getMessage();
+        }
     }
     //endregion
 
     //region Create
     @RequestMapping(value ="/barbers", method = RequestMethod.POST)
-    public Long createBarber(@RequestBody Barber barber){
-        return this.barberRepository.save(barber).getId();
+    public String createBarber(@RequestBody Barber barber){
+        try {
+            return ""+this.barberRepository.save(barber).getId();
+        }catch(Exception e){
+            return e.getMessage();
+        }
     }
     //endregion
 }
