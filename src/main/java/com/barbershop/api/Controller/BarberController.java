@@ -16,13 +16,6 @@ public class BarberController {
     @Autowired
     private IBarberRepository barberRepository;
 
-    //region Test
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String Test() {
-        return "API is running";
-    }
-    //endregion
-
     //region Get
     @RequestMapping(method = RequestMethod.GET)
     public List<Barber> getAllBarbers(){
