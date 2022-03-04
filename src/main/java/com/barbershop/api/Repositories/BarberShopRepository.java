@@ -9,11 +9,11 @@ import java.util.List;
 public class BarberShopRepository {
     //region Find
     public BarberShopInstance FindInstance(int id){
-        return new BarberShopInstance();
+        return null;
     }
 
     public BarberShop Find(int id){
-        return new BarberShop();
+        return null;
     }
     //endregion
     //region Update
