@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "Barber")
 public class Barber extends BaseModel {
     @Column
     public int nif;
