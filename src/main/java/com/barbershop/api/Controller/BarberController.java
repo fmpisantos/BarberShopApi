@@ -3,6 +3,7 @@ package com.barbershop.api.Controller;
 import com.barbershop.api.Models.Barber.Barber;
 import com.barbershop.api.Repositories.IBarberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("/barbers")
 public class BarberController {
 
     @Autowired
     private IBarberRepository barberRepository;
 
     //region Get
-    @RequestMapping(value ="/barbers",method = RequestMethod.GET)
+    @RequestMapping(value ="",method = RequestMethod.GET)
     public /*List<Barber>*/ String getAllBarbers(){
         try {
             return this.barberRepository.findAll().toString();
@@ -28,7 +30,7 @@ public class BarberController {
     //endregion
 
     //region Create
-    @RequestMapping(value ="/barbers", method = RequestMethod.POST)
+    @RequestMapping(value ="", method = RequestMethod.POST)
     public String createBarber(@RequestBody Barber barber){
         try {
             return ""+this.barberRepository.save(barber).getId();
