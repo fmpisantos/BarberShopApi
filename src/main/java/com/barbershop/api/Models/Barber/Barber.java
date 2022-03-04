@@ -15,8 +15,8 @@ public class Barber extends BaseModel {
     @Column
     public String name, email, phone;
 
-    public Barber(Date createdUtc, Date modifiedUtc, boolean active, int nif, String name, String email, String phone) {
-        super(createdUtc, modifiedUtc, active);
+    public Barber(boolean active, int nif, String name, String email, String phone) {
+        super(new Date(), new Date(), active);
         this.nif = nif;
         this.name = name;
         this.email = email;
