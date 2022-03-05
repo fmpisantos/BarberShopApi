@@ -10,7 +10,7 @@ public class History extends BaseModel {
     public Long serviceId, shopId, barberId, clientId;
     public Date dateTime;
 
-    public History(boolean active, Integer serviceId, Integer shopId, Integer barberId, Integer clientId, Date dateTime) {
+    public History(boolean active, Long serviceId, Long shopId, Long barberId, Long clientId, Date dateTime) {
         super(active);
         this.serviceId = serviceId;
         this.shopId = shopId;
@@ -19,7 +19,7 @@ public class History extends BaseModel {
         this.dateTime = dateTime;
     }
 
-    public History(long id, boolean active, Integer serviceId, Integer shopId, Integer barberId, Integer clientId, Date dateTime) {
+    public History(long id, boolean active, Long serviceId, Long shopId, Long barberId, Long clientId, Date dateTime) {
         super(id, active);
         this.serviceId = serviceId;
         this.shopId = shopId;
@@ -31,7 +31,7 @@ public class History extends BaseModel {
     public History() {
     }
 
-    public History(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer serviceId, Integer shopId, Integer barberId, Integer clientId, Date dateTime) {
+    public History(long id, boolean active, Date createdUtc, Date modifiedUtc, Long serviceId, Long shopId, Long barberId, Long clientId, Date dateTime) {
         super(id, active, createdUtc, modifiedUtc);
         this.serviceId = serviceId;
         this.shopId = shopId;
@@ -40,35 +40,35 @@ public class History extends BaseModel {
         this.dateTime = dateTime;
     }
 
-    public Integer getServiceId() {
+    public Long getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(Integer serviceId) {
+    public void setServiceId(Long serviceId) {
         this.serviceId = serviceId;
     }
 
-    public Integer getShopId() {
+    public Long getShopId() {
         return shopId;
     }
 
-    public void setShopId(Integer shopId) {
+    public void setShopId(Long shopId) {
         this.shopId = shopId;
     }
 
-    public Integer getBarberId() {
+    public Long getBarberId() {
         return barberId;
     }
 
-    public void setBarberId(Integer barberId) {
+    public void setBarberId(Long barberId) {
         this.barberId = barberId;
     }
 
-    public Integer getClientId() {
+    public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
+    public void setClientId(Long clientId) {
         this.clientId = clientId;
     }
 
