@@ -2,7 +2,6 @@ package com.barbershop.api.Models.Shop;
 
 import com.barbershop.api.Models.BaseModel;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
@@ -10,10 +9,10 @@ import java.util.Date;
 @Entity
 @Table
 public class BarberShop extends BaseModel {
-    public Integer instanceId;
+    private Long instanceId;
     public String privateName, publicName, location;
 
-    public BarberShop(long id, boolean active, Integer instanceId, String privateName, String publicName, String location) {
+    public BarberShop(long id, boolean active, Long instanceId, String privateName, String publicName, String location) {
         super(id, active);
         this.instanceId = instanceId;
         this.privateName = privateName;
@@ -24,7 +23,7 @@ public class BarberShop extends BaseModel {
     public BarberShop() {
     }
 
-    public BarberShop(boolean active, Integer instanceId, String privateName, String publicName, String location) {
+    public BarberShop(boolean active, Long instanceId, String privateName, String publicName, String location) {
         super(active);
         this.instanceId = instanceId;
         this.privateName = privateName;
@@ -32,7 +31,7 @@ public class BarberShop extends BaseModel {
         this.location = location;
     }
 
-    public BarberShop(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer instanceId, String privateName, String publicName, String location) {
+    public BarberShop(long id, boolean active, Date createdUtc, Date modifiedUtc, Long instanceId, String privateName, String publicName, String location) {
         super(id, active, createdUtc, modifiedUtc);
         this.instanceId = instanceId;
         this.privateName = privateName;
@@ -40,11 +39,11 @@ public class BarberShop extends BaseModel {
         this.location = location;
     }
 
-    public Integer getInstanceId() {
+    public Long getInstanceId() {
         return instanceId;
     }
 
-    public void setInstanceId(int instanceId) {
+    public void setInstanceId(Long instanceId) {
         this.instanceId = instanceId;
     }
 

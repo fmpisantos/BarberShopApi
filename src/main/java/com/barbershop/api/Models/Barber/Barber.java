@@ -1,6 +1,7 @@
 package com.barbershop.api.Models.Barber;
 
 import com.barbershop.api.Models.BaseModel;
+
 import javax.persistence.Entity;
 import java.util.Date;
 

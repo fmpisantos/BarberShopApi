@@ -1,0 +1,914 @@
+{
+	"info": {
+		"_postman_id": "f3d9eb41-663d-4654-bdd9-a0dab599ad95",
+		"name": "BarberShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Barber",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nif\": 123456789,\r\n    \"name\": \"Filipe Santos\",\r\n    \"email\": \"filipesantosdev@gmail.com\",\r\n    \"phone\": \"+351962844407\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbers?sortby=name&start=0&end=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbers"
+							],
+							"query": [
+								{
+									"key": "sortby",
+									"value": "name"
+								},
+								{
+									"key": "start",
+									"value": "0"
+								},
+								{
+									"key": "end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbers/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Filipe Miguel Pinho Santos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbers/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Barber Shop",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"instanceId\": 1,\r\n    \"privateName\": \"Loja 1\",\r\n    \"publicName\" : \"Loja 1\",\r\n    \"location\" : \"Rua Ramiro Ferrão, 47, 7, ESQ, Almada, 2805'356\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbershop",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershop?sortby=publicName&start=0&end=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop"
+							],
+							"query": [
+								{
+									"key": "sortby",
+									"value": "publicName"
+								},
+								{
+									"key": "start",
+									"value": "0"
+								},
+								{
+									"key": "end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershop/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"instanceId\": 1,\r\n    \"privateName\": \"Loja 1\",\r\n    \"publicName\" : \"Loja 1\",\r\n    \"location\" : \"Rua Ramiro Ferrão, 47, 7, ESQ, Almada, 2805'356\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbershop",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershop/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Barber Shop Instance",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nif\": 123456789,\r\n    \"name\": \"BarberShop Instance\",\r\n    \"email\": \"filipesantosdev@gmail.com\",\r\n    \"phone\": \"+351962844407\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbershopinstance",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershopinstance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershopinstance?sortby=name&start=0&end=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershopinstance"
+							],
+							"query": [
+								{
+									"key": "sortby",
+									"value": "name"
+								},
+								{
+									"key": "start",
+									"value": "0"
+								},
+								{
+									"key": "end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershopinstance/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershopinstance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Filipe Miguel Pinho Santos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbershopinstance",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershopinstance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershopinstance/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershopinstance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nif\": 123456789,\r\n    \"name\": \"BarberShop Instance\",\r\n    \"email\": \"filipesantosdev@gmail.com\",\r\n    \"phone\": \"+351962844407\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/client",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/client?sortby=name&start=0&end=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"client"
+							],
+							"query": [
+								{
+									"key": "sortby",
+									"value": "name"
+								},
+								{
+									"key": "start",
+									"value": "0"
+								},
+								{
+									"key": "end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/client/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Filipe Miguel Pinho Santos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/client",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/client/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceId\": 1,\r\n    \"shopId\": 1,\r\n    \"barberId\": 1,\r\n    \"clientId\": 1,\r\n    \"dateTime\": \"2022-03-05T15:08:50.424+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/history?sortby=dateTime&start=0&end=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"history"
+							],
+							"query": [
+								{
+									"key": "sortby",
+									"value": "dateTime"
+								},
+								{
+									"key": "start",
+									"value": "0"
+								},
+								{
+									"key": "end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/history/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"history",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"serviceId\": 1,\r\n    \"shopId\": 1,\r\n    \"barberId\": 1,\r\n    \"clientId\": 1,\r\n    \"dateTime\": \"2022-03-05T15:08:50.424+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/history/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"history",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shopId\": 1,\r\n    \"duration\": 30,\r\n    \"price\": 9.5,\r\n    \"name\": \"Corte\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/services",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/services?sortby=name&start=0&end=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services"
+							],
+							"query": [
+								{
+									"key": "sortby",
+									"value": "name"
+								},
+								{
+									"key": "start",
+									"value": "0"
+								},
+								{
+									"key": "end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/services/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"shopId\": 1,\r\n    \"duration\": 30,\r\n    \"price\": 9.5,\r\n    \"name\": \"Corte\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/services",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/services/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shop Barber Relation",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shopId\": 1,\r\n    \"barberId\": 1,\r\n    \"photo\": \"Teste.png\",\r\n    \"location\":\"Rua\",\r\n    \"schedule\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/shopbarber",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shopbarber"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/shopbarber?sortby=name&start=0&end=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shopbarber"
+							],
+							"query": [
+								{
+									"key": "sortby",
+									"value": "name"
+								},
+								{
+									"key": "start",
+									"value": "0"
+								},
+								{
+									"key": "end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/shopbarber/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shopbarber",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"shopId\": 1,\r\n    \"barberId\": 1,\r\n    \"photo\": \"Teste.png\",\r\n    \"location\":\"Rua\",\r\n    \"schedule\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/shopbarber",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shopbarber"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/shopbarber/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shopbarber",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "production",
+			"value": "https://notalkfood.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "local",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

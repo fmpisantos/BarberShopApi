@@ -11,11 +11,12 @@ public class Services extends BaseModel {
     Duration is given in minutes
     Price is given in euros
      */
-    public Integer shopId, duration;
+    public Long shopId;
+    public Integer duration;
     public float price;
     public String name;
 
-    public Services(long id, boolean active, Integer shopId, Integer duration, float price, String name) {
+    public Services(long id, boolean active, Long shopId, Integer duration, float price, String name) {
         super(id, active);
         this.shopId = shopId;
         this.duration = duration;
@@ -26,7 +27,7 @@ public class Services extends BaseModel {
     public Services() {
     }
 
-    public Services(boolean active, Integer shopId, Integer duration, float price, String name) {
+    public Services(boolean active, Long shopId, Integer duration, float price, String name) {
         super(active);
         this.shopId = shopId;
         this.duration = duration;
@@ -34,7 +35,7 @@ public class Services extends BaseModel {
         this.name = name;
     }
 
-    public Services(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer shopId, Integer duration, float price, String name) {
+    public Services(long id, boolean active, Date createdUtc, Date modifiedUtc, Long shopId, Integer duration, float price, String name) {
         super(id, active, createdUtc, modifiedUtc);
         this.shopId = shopId;
         this.duration = duration;
@@ -42,11 +43,11 @@ public class Services extends BaseModel {
         this.name = name;
     }
 
-    public Integer getShopId() {
+    public Long getShopId() {
         return shopId;
     }
 
-    public void setShopId(int shopId) {
+    public void setShopId(Long shopId) {
         this.shopId = shopId;
     }
 

@@ -2,8 +2,10 @@ package com.barbershop.api.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
-import java.beans.ConstructorProperties;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 @MappedSuperclass

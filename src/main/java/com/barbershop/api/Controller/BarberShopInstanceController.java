@@ -1,9 +1,7 @@
-
 package com.barbershop.api.Controller;
 
-import com.barbershop.api.Models.Shop.BarberShop;
+import com.barbershop.api.Models.Shop.BarberShopInstance;
 import com.barbershop.api.Repositories.IBarberShopInstanceRepository;
-import com.barbershop.api.Repositories.IBarberShopRepository;
 import com.barbershop.api.Utils.CombineObjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,53 +15,42 @@ import java.util.Date;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("barbershop")
-public class BarberShopController {
+@RequestMapping("barbershopinstance")
+public class BarberShopInstanceController {
 
     @Autowired
-    private IBarberShopRepository repository;
-
-    @Autowired
-    private IBarberShopInstanceRepository instanceRepository;
+    private IBarberShopInstanceRepository repository;
 
     //region List
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Page<BarberShop>> list(@RequestParam(value = "sortby", required = false) String sortBy, @RequestParam(value = "start", required = false) Integer start, @RequestParam(value = "end", required = false) Integer end) {
+    @RequestMapping( method = RequestMethod.GET)
+    public ResponseEntity<Page<BarberShopInstance>> list(@RequestParam(value = "sortby", required = false) String sortBy, @RequestParam(value = "start", required = false) Integer start, @RequestParam(value = "end", required = false) Integer end) {
         return new ResponseEntity<>(this.repository.findAll(PageRequest.of(start != null ? start : 0, end != null ? end : 10, Sort.by(sortBy != null ? sortBy : "id"))), HttpStatus.OK);
     }
     //endregion
 
     //region Create
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Long> create(@RequestBody BarberShop barber) {
-        //barber.createdUtc = new Date();
-        //barber.modifiedUtc = new Date();
-        Optional instance = instanceRepository.findById(barber.getInstanceId());
-        if(instance.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Long> create(@RequestBody BarberShopInstance barber) {
         return new ResponseEntity<>(this.repository.save(barber).getId(), HttpStatus.OK);
     }
     //endregion
 
     //region Get
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<BarberShop> get(@PathVariable("id") Long id) {
-        Optional<BarberShop> entity = this.repository.findById(id);
-        return new ResponseEntity<>(entity.isPresent() ? ((BarberShop) entity.get()) : null, entity.isPresent() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    public ResponseEntity<BarberShopInstance> get(@PathVariable("id") Long id) {
+        Optional<BarberShopInstance> entity = this.repository.findById(id);
+        return new ResponseEntity<>(entity.isPresent() ? ((BarberShopInstance) entity.get()) : null, entity.isPresent() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
     //endregion
 
     //region Update
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@RequestBody BarberShop barber) {
-        Optional instance = instanceRepository.findById(barber.getInstanceId());
-        if(instance.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<String> update(@RequestBody BarberShopInstance barber) {
         Optional entity = this.repository.findById(barber.id);
         if (entity.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
-            barber = new CombineObjects<BarberShop>().merge(barber, ((BarberShop) entity.get()));
+            barber = new CombineObjects<BarberShopInstance>().merge(barber, ((BarberShopInstance) entity.get()));
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -79,7 +66,7 @@ public class BarberShopController {
         Optional entity = this.repository.findById(id);
         if (entity.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        BarberShop barber = (BarberShop) entity.get();
+        BarberShopInstance barber = (BarberShopInstance) entity.get();
         barber.modifiedUtc = new Date();
         barber.active = false;
         this.repository.save(barber);

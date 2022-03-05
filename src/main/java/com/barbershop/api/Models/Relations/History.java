@@ -1,12 +1,13 @@
 package com.barbershop.api.Models.Relations;
 
 import com.barbershop.api.Models.BaseModel;
+
 import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
 public class History extends BaseModel {
-    public Integer serviceId, shopId, barberId, clientId;
+    public Long serviceId, shopId, barberId, clientId;
     public Date dateTime;
 
     public History(boolean active, Integer serviceId, Integer shopId, Integer barberId, Integer clientId, Date dateTime) {

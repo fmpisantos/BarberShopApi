@@ -29,6 +29,10 @@ public class BarberShopInstance extends BaseModel {
     public BarberShopInstance() {
     }
 
+    public BarberShopInstance(Long id) {
+        super(id,true);
+    }
+
     public BarberShopInstance(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer nif, String name, String email, String phone) {
         super(id, active, createdUtc, modifiedUtc);
         this.nif = nif;
