@@ -250,6 +250,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "List Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershop/1/clients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1",
+								"clients"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -387,7 +406,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nif\": 123456789,\r\n    \"name\": \"BarberShop Instance\",\r\n    \"email\": \"filipesantosdev@gmail.com\",\r\n    \"phone\": \"+351962844407\",\r\n    \"active\": true\r\n}",
+							"raw": "{\r\n    \"nif\": 123456789,\r\n    \"name\": \"Filipe\",\r\n    \"email\": \"filipesantosdev@gmail.com\",\r\n    \"phone\": \"+351962844407\",\r\n    \"active\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
