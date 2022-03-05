@@ -1,26 +1,36 @@
 package com.barbershop.api.Models.Barber;
 
 import com.barbershop.api.Models.BaseModel;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "Barber")
 public class Barber extends BaseModel {
-    @Column(name="Nif")
-    public int nif;
-    @Column(name="Name")
+    public Integer nif;
     public String name;
-    @Column(name="Email")
     public String email;
-    @Column(name="Phone")
     public String phone;
 
-    public Barber(boolean active, int nif, String name, String email, String phone) {
-        super(new Date(), new Date(), active);
+    public Barber(){super();}
+
+    public Barber(long id, boolean active, Integer nif, String name, String email, String phone) {
+        super(id, active);
+        this.nif = nif;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Barber(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer nif, String name, String email, String phone) {
+        super(id,active, createdUtc, modifiedUtc);
+        this.nif = nif;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Barber(boolean active, Integer nif, String name, String email, String phone) {
+        super(active);
         this.nif = nif;
         this.name = name;
         this.email = email;
@@ -51,7 +61,7 @@ public class Barber extends BaseModel {
         this.phone = phone;
     }
 
-    public int getNif() {
+    public Integer getNif() {
         return nif;
     }
 

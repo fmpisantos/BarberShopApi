@@ -1,23 +1,43 @@
 package com.barbershop.api.Models.Shop;
 
 import com.barbershop.api.Models.BaseModel;
+
 import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
 public class BarberShopInstance extends BaseModel {
-    public int nif;
+    public Integer nif;
     public String name, email, phone;
 
-    public BarberShopInstance(Date createdUtc, Date modifiedUtc, boolean active, int nif, String name, String email, String phone) {
-        super(createdUtc, modifiedUtc, active);
+    public BarberShopInstance(boolean active, Integer nif, String name, String email, String phone) {
+        super(active);
         this.nif = nif;
         this.name = name;
         this.email = email;
         this.phone = phone;
     }
 
-    public int getNif() {
+    public BarberShopInstance(long id, boolean active, Integer nif, String name, String email, String phone) {
+        super(id, active);
+        this.nif = nif;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public BarberShopInstance() {
+    }
+
+    public BarberShopInstance(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer nif, String name, String email, String phone) {
+        super(id, active, createdUtc, modifiedUtc);
+        this.nif = nif;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Integer getNif() {
         return nif;
     }
 

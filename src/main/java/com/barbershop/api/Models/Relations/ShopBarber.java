@@ -6,11 +6,11 @@ import java.util.Date;
 
 @Entity
 public class ShopBarber extends BaseModel {
-    public int shopId, barberId;
+    public Integer shopId, barberId;
     public String photo, location, schedule;
 
-    public ShopBarber(Date createdUtc, Date modifiedUtc, boolean active, int shopId, int barberId, String photo, String location, String schedule) {
-        super(createdUtc, modifiedUtc, active);
+    public ShopBarber(long id, boolean active, Integer shopId, Integer barberId, String photo, String location, String schedule) {
+        super(id, active);
         this.shopId = shopId;
         this.barberId = barberId;
         this.photo = photo;
@@ -18,7 +18,28 @@ public class ShopBarber extends BaseModel {
         this.schedule = schedule;
     }
 
-    public int getShopId() {
+    public ShopBarber() {
+    }
+
+    public ShopBarber(boolean active, Integer shopId, Integer barberId, String photo, String location, String schedule) {
+        super(active);
+        this.shopId = shopId;
+        this.barberId = barberId;
+        this.photo = photo;
+        this.location = location;
+        this.schedule = schedule;
+    }
+
+    public ShopBarber(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer shopId, Integer barberId, String photo, String location, String schedule) {
+        super(id, active, createdUtc, modifiedUtc);
+        this.shopId = shopId;
+        this.barberId = barberId;
+        this.photo = photo;
+        this.location = location;
+        this.schedule = schedule;
+    }
+
+    public Integer getShopId() {
         return shopId;
     }
 
@@ -26,7 +47,7 @@ public class ShopBarber extends BaseModel {
         this.shopId = shopId;
     }
 
-    public int getBarberId() {
+    public Integer getBarberId() {
         return barberId;
     }
 

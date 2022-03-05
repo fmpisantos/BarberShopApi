@@ -1,6 +1,7 @@
 package com.barbershop.api.Models.Shop;
 
 import com.barbershop.api.Models.BaseModel;
+
 import javax.persistence.Entity;
 import java.util.Date;
 
@@ -10,19 +11,38 @@ public class Services extends BaseModel {
     Duration is given in minutes
     Price is given in euros
      */
-    public int shopId, duration;
+    public Integer shopId, duration;
     public float price;
     public String name;
 
-    public Services(Date createdUtc, Date modifiedUtc, boolean active, int shopId, int duration, float price, String name) {
-        super(createdUtc, modifiedUtc, active);
+    public Services(long id, boolean active, Integer shopId, Integer duration, float price, String name) {
+        super(id, active);
         this.shopId = shopId;
         this.duration = duration;
         this.price = price;
         this.name = name;
     }
 
-    public int getShopId() {
+    public Services() {
+    }
+
+    public Services(boolean active, Integer shopId, Integer duration, float price, String name) {
+        super(active);
+        this.shopId = shopId;
+        this.duration = duration;
+        this.price = price;
+        this.name = name;
+    }
+
+    public Services(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer shopId, Integer duration, float price, String name) {
+        super(id, active, createdUtc, modifiedUtc);
+        this.shopId = shopId;
+        this.duration = duration;
+        this.price = price;
+        this.name = name;
+    }
+
+    public Integer getShopId() {
         return shopId;
     }
 
@@ -30,7 +50,7 @@ public class Services extends BaseModel {
         this.shopId = shopId;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 

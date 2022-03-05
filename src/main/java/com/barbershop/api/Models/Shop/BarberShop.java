@@ -10,18 +10,37 @@ import java.util.Date;
 @Entity
 @Table
 public class BarberShop extends BaseModel {
-    public int instanceId;
+    public Integer instanceId;
     public String privateName, publicName, location;
 
-    public BarberShop(Date createdUtc, Date modifiedUtc, boolean active, int instanceId, String privateName, String publicName, String location) {
-        super(createdUtc, modifiedUtc, active);
+    public BarberShop(long id, boolean active, Integer instanceId, String privateName, String publicName, String location) {
+        super(id, active);
         this.instanceId = instanceId;
         this.privateName = privateName;
         this.publicName = publicName;
         this.location = location;
     }
 
-    public int getInstanceId() {
+    public BarberShop() {
+    }
+
+    public BarberShop(boolean active, Integer instanceId, String privateName, String publicName, String location) {
+        super(active);
+        this.instanceId = instanceId;
+        this.privateName = privateName;
+        this.publicName = publicName;
+        this.location = location;
+    }
+
+    public BarberShop(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer instanceId, String privateName, String publicName, String location) {
+        super(id, active, createdUtc, modifiedUtc);
+        this.instanceId = instanceId;
+        this.privateName = privateName;
+        this.publicName = publicName;
+        this.location = location;
+    }
+
+    public Integer getInstanceId() {
         return instanceId;
     }
 

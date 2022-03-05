@@ -6,11 +6,11 @@ import java.util.Date;
 
 @Entity
 public class History extends BaseModel {
-    public int serviceId, shopId, barberId, clientId;
+    public Integer serviceId, shopId, barberId, clientId;
     public Date dateTime;
 
-    public History(Date createdUtc, Date modifiedUtc, boolean active, int serviceId, int shopId, int barberId, int clientId, Date dateTime) {
-        super(createdUtc, modifiedUtc, active);
+    public History(boolean active, Integer serviceId, Integer shopId, Integer barberId, Integer clientId, Date dateTime) {
+        super(active);
         this.serviceId = serviceId;
         this.shopId = shopId;
         this.barberId = barberId;
@@ -18,35 +18,56 @@ public class History extends BaseModel {
         this.dateTime = dateTime;
     }
 
-    public int getServiceId() {
+    public History(long id, boolean active, Integer serviceId, Integer shopId, Integer barberId, Integer clientId, Date dateTime) {
+        super(id, active);
+        this.serviceId = serviceId;
+        this.shopId = shopId;
+        this.barberId = barberId;
+        this.clientId = clientId;
+        this.dateTime = dateTime;
+    }
+
+    public History() {
+    }
+
+    public History(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer serviceId, Integer shopId, Integer barberId, Integer clientId, Date dateTime) {
+        super(id, active, createdUtc, modifiedUtc);
+        this.serviceId = serviceId;
+        this.shopId = shopId;
+        this.barberId = barberId;
+        this.clientId = clientId;
+        this.dateTime = dateTime;
+    }
+
+    public Integer getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(int serviceId) {
+    public void setServiceId(Integer serviceId) {
         this.serviceId = serviceId;
     }
 
-    public int getShopId() {
+    public Integer getShopId() {
         return shopId;
     }
 
-    public void setShopId(int shopId) {
+    public void setShopId(Integer shopId) {
         this.shopId = shopId;
     }
 
-    public int getBarberId() {
+    public Integer getBarberId() {
         return barberId;
     }
 
-    public void setBarberId(int barberId) {
+    public void setBarberId(Integer barberId) {
         this.barberId = barberId;
     }
 
-    public int getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 

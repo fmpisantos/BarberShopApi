@@ -6,11 +6,29 @@ import java.util.Date;
 
 @Entity
 public class Client extends BaseModel {
-    public int nif;
+    public Integer nif;
     public String name, email, phone;
 
-    public Client(Date createdUtc, Date modifiedUtc, boolean active, int nif, String name, String email, String phone) {
-        super(createdUtc, modifiedUtc, active);
+    public Client(boolean active, Integer nif, String name, String email, String phone) {
+        super(active);
+        this.nif = nif;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Client() { }
+
+    public Client(long id, boolean active, Integer nif, String name, String email, String phone) {
+        super(id, active);
+        this.nif = nif;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Client(long id, boolean active, Date createdUtc, Date modifiedUtc, Integer nif, String name, String email, String phone) {
+        super(id, active, createdUtc, modifiedUtc);
         this.nif = nif;
         this.name = name;
         this.email = email;
@@ -21,7 +39,7 @@ public class Client extends BaseModel {
         return nif;
     }
 
-    public void setNif(int nif) {
+    public void setNif(Integer nif) {
         this.nif = nif;
     }
 

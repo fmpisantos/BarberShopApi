@@ -1,24 +1,46 @@
 package com.barbershop.api.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.beans.ConstructorProperties;
 import java.util.Date;
 
-@Entity
+@MappedSuperclass
 public class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     public long id;
-    @Column(name = "CreatedUtc")
-    public Date CreatedUtc;
-    @Column(name = "ModifiedUtc")
-    public Date ModifiedUtc;
-    @Column(name = "Active")
-    public boolean Active;
+    @JsonProperty("active")
+    public boolean active;
+    @JsonProperty("createdUtc")
+    public Date createdUtc;
+    @JsonProperty("modifiedUtc")
+    public Date modifiedUtc;
 
-    public BaseModel(Date createdUtc, Date modifiedUtc, boolean Active) {
-        CreatedUtc = createdUtc;
-        ModifiedUtc = modifiedUtc;
-        Active = Active;
+    public BaseModel(){
+        this.createdUtc = new Date();
+        this.modifiedUtc = new Date();
+    }
+
+    public BaseModel(long id, boolean active, Date createdUtc, Date modifiedUtc) {
+        this.id = id;
+        this.createdUtc = createdUtc;
+        this.modifiedUtc = modifiedUtc;
+        this.active = active;
+    }
+
+    public BaseModel(boolean active) {
+        this.active = active;
+        this.createdUtc = new Date();
+        this.modifiedUtc = new Date();
+    }
+
+    public BaseModel(long id,boolean active) {
+        this.id = id;
+        this.active = active;
+        this.modifiedUtc = new Date();
     }
 
     public long getId() {
@@ -30,27 +52,27 @@ public class BaseModel {
     }
 
     public Date getCreatedUtc() {
-        return CreatedUtc;
+        return createdUtc;
     }
 
     public void setCreatedUtc(Date createdUtc) {
-        CreatedUtc = createdUtc;
+        this.createdUtc = createdUtc;
     }
 
     public Date getModifiedUtc() {
-        return ModifiedUtc;
+        return modifiedUtc;
     }
 
     public void setModifiedUtc(Date modifiedUtc) {
-        ModifiedUtc = modifiedUtc;
+        this.modifiedUtc = modifiedUtc;
     }
 
     public boolean isActive() {
-        return Active;
+        return active;
     }
 
     public void setActive(boolean active) {
-        this.Active = active;
+        this.active = active;
     }
 
 }
