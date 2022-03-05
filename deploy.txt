@@ -1,0 +1,9 @@
+// First commit(FC): 
+	git init
+git add .
+git commit -m "README.md"
+// Create new app && First commit
+	heroku create -a example-app
+// Existing app && First commit 
+	heroku git:remote -a example-app
+git push heroku master
