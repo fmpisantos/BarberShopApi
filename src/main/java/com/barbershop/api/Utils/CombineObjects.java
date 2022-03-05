@@ -1,6 +1,8 @@
 package com.barbershop.api.Utils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CombineObjects<T> {
     public CombineObjects(){}
@@ -23,4 +25,5 @@ public class CombineObjects<T> {
         }
         return o1;
     }
+
 }

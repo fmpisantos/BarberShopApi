@@ -1,9 +1,12 @@
 
 package com.barbershop.api.Controller;
 
+import com.barbershop.api.Models.Client.Client;
 import com.barbershop.api.Models.Shop.BarberShop;
 import com.barbershop.api.Repositories.IBarberShopInstanceRepository;
 import com.barbershop.api.Repositories.IBarberShopRepository;
+import com.barbershop.api.Repositories.IClientRepository;
+import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Utils.CombineObjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,7 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,6 +30,9 @@ public class BarberShopController {
 
     @Autowired
     private IBarberShopInstanceRepository instanceRepository;
+
+    @Autowired
+    private IClientRepository clientRepository;
 
     //region List
     @RequestMapping(method = RequestMethod.GET)
@@ -84,6 +92,17 @@ public class BarberShopController {
         barber.active = false;
         this.repository.save(barber);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    //endregion
+
+    //region Clients with history in this shop
+    @RequestMapping(value="/{id}/clients", method = RequestMethod.GET)
+    public ResponseEntity<List<Client>> listClients(@PathVariable("id") Long id){
+        try {
+            return new ResponseEntity<>(clientRepository.findAllClientsByShopId(id), HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     //endregion
 }

@@ -18,6 +18,14 @@ public class Client extends BaseModel {
         this.phone = phone;
     }
 
+    public Client(Object[] obj){
+        super((Long) obj[0], (Boolean) obj[1], (Date) obj[2], (Date) obj[3]);
+        this.email = (String) obj[4];
+        this.name = (String) obj[5];
+        this.nif = (Integer) obj[6];
+        this.phone = (String) obj[7];
+    }
+
     public Client() { }
 
     public Client(long id, boolean active, Integer nif, String name, String email, String phone) {

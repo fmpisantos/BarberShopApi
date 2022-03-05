@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("serivices")
+@RequestMapping("services")
 public class ServicesController {
 
     @Autowired
