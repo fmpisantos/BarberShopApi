@@ -28,4 +28,10 @@ public interface IBarberShopRepository extends JpaRepository<BarberShop, Long> {
             "FROM services S " +
             "WHERE S.shop_id = :shopId", nativeQuery = true)
     List<Map<String, Object>> listServices(Long shopId);
+
+    @Query(value = "SELECT * " +
+            "FROM Barber B " +
+            "INNER JOIN shop_barber SB ON SB.barber_id = B.id " +
+            "WHERE SB.shop_id = :shopId", nativeQuery = true)
+    List<Map<String, Object>> listBarbers(Long shopId);
 }
