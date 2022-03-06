@@ -29,8 +29,8 @@ public class Calendar {
         String[] horas;
         for (String turno : turnos) {
             horas = turno.split("-");
-            List<Object> list = generateFromStartToEnd(horas[0], horas[1], reservations).toList();
-            list.addAll(jr.toList());
+            List<Object> list = jr.toList();
+            list.addAll(generateFromStartToEnd(horas[0], horas[1], reservations).toList());
             jr = new JSONArray(list);
         }
         return jr;
