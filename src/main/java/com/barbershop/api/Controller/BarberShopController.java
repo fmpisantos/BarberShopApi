@@ -2,6 +2,7 @@
 package com.barbershop.api.Controller;
 
 import com.barbershop.api.Models.Client.Client;
+import com.barbershop.api.Models.Relations.History;
 import com.barbershop.api.Models.Shop.BarberShop;
 import com.barbershop.api.Repositories.IBarberShopInstanceRepository;
 import com.barbershop.api.Repositories.IBarberShopRepository;
@@ -33,6 +34,9 @@ public class BarberShopController {
 
     @Autowired
     private IClientRepository clientRepository;
+
+    @Autowired
+    private IHistoryRepository historyRepository;
 
     //region List
     @RequestMapping(method = RequestMethod.GET)
@@ -100,6 +104,17 @@ public class BarberShopController {
     public ResponseEntity<List<Client>> listClients(@PathVariable("id") Long id){
         try {
             return new ResponseEntity<>(clientRepository.findAllClientsByShopId(id), HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    //endregion
+
+    //region Calendar of a single day
+    @RequestMapping(value="/{id}/history", method = RequestMethod.POST)
+    public ResponseEntity<List<History>> listClients(@PathVariable("id") Long id, @RequestBody String dateTime){
+        try {
+            return new ResponseEntity<>(historyRepository.historyByShopAndDate(id, dateTime+"%"), HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

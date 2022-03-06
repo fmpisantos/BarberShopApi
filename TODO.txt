@@ -5,16 +5,16 @@ Clientes => History
 
 
 Tables: 
-        MarcaInstances (Marca barbearia) : Id, Name, NIF, Email, Phone, Active, CreatedUtc, ModifiedUtc
-        Lojas: Id, MarcaId, PrivateName, PublicName, Location, Active, CreatedUtc, ModifiedUtc
-        Barbeiro: Id, Name, Phone, Email, Active, CreatedUtc, ModifiedUtc
-        LojaBarber: Id, LojaId, BarberId, PhotoLocation, Schedule, Active, CreatedUtc, ModifiedUtc
-        Servicos: Id, LojaId, Name, Price, Duration, Active, CreatedUtc, ModifiedUtc
-        History: Id, ServiceId, LojaId, BarberId, ClientId, Datetime, Active, CreatedUtc, ModifiedUtc
-        Client = Id, Name, Email, Phone, NIF, Active, CreatedUtc, ModifiedUtc
+        (DONE) - MarcaInstances (Marca barbearia) : Id, Name, NIF, Email, Phone, Active, CreatedUtc, ModifiedUtc
+        (DONE) - Lojas: Id, MarcaId, PrivateName, PublicName, Location, Active, CreatedUtc, ModifiedUtc
+        (DONE) - Barbeiro: Id, Name, Phone, Email, Active, CreatedUtc, ModifiedUtc
+        (DONE) - LojaBarber: Id, LojaId, BarberId, PhotoLocation, Schedule, Active, CreatedUtc, ModifiedUtc
+        (DONE) - Servicos: Id, LojaId, Name, Price, Duration, Active, CreatedUtc, ModifiedUtc
+        (DONE) - History: Id, ServiceId, LojaId, BarberId, ClientId, Datetime, Active, CreatedUtc, ModifiedUtc
+        (DONE) - Client = Id, Name, Email, Phone, NIF, Active, CreatedUtc, ModifiedUtc
 
 Listagens: 
-        (1)Clientes por Loja = Query over history where loja = x with distinct ClientId
+        (DONE) - (1)Clientes por Loja = Query over history where loja = x with distinct ClientId
         (2)Calendario por loja = Query over history where loja = x and datetime = y
         (3)Calendario por barbeiro = Query over history where barber = x and datetime = y
         (4)Calendario por barbeiro e loja = Query over history where barber = x and loja = y and datetime = z
@@ -29,3 +29,5 @@ Se acharmos que o history vai ficar muito grande podemos sempre meter um
 history por loja
 E criar uma tabela ClientLoja para saber em que lojas o cliente tem marca��es
 ativas assim sabemos a quais dos histories ir
+
+É preciso tratar de segurança authentication e autorization
