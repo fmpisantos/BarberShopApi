@@ -393,6 +393,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "List services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershop/1/services",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1",
+								"services"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

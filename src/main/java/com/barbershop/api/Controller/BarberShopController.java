@@ -157,4 +157,15 @@ public class BarberShopController {
     }
     //endregion
 
+    //region Get services
+    @RequestMapping(value = "/{id}/services", method = RequestMethod.GET)
+    public ResponseEntity<List<Map<String, Object>>> listServices(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity<>(Responses.buildReturnListFromMap(this.repository.listServices(id)), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    //endregion
+
 }

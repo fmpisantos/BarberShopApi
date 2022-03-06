@@ -12,6 +12,7 @@ Tables:
         (DONE) - Servicos: Id, LojaId, Name, Price, Duration, Active, CreatedUtc, ModifiedUtc
         (DONE) - History: Id, ServiceId, LojaId, BarberId, ClientId, Datetime, Active, CreatedUtc, ModifiedUtc
         (DONE) - Client = Id, Name, Email, Phone, NIF, Active, CreatedUtc, ModifiedUtc
+        ServicesBarber = id, serviceId, barberId, active, createdUtc, ModifiedUtc
 
 Listagens: 
         (DONE) - (1)Clientes por Loja = Query over history where loja = x with distinct ClientId
@@ -22,6 +23,7 @@ Listagens:
         (DONE) - (6)Get schedule per loja = (5) InnerJoin Barbeiro.Schedule
         (7)Get availability per day = (6) except (4) to get available Dates -- Pode ser feito na aplicação
         (DONE) - (8)Get client calendar = Query Over history where clientId = x
+        (9) - Get services by shop
 
 Acho que com estas tabelas � possivel termos todas as queries que precisamos
 Se acharmos que o history vai ficar muito grande podemos sempre meter um
@@ -30,3 +32,5 @@ E criar uma tabela ClientLoja para saber em que lojas o cliente tem marca��e
 ativas assim sabemos a quais dos histories ir
 
 É preciso tratar de segurança authentication e autorization
+
+TODO: relation between services and barbers
