@@ -10,6 +10,7 @@ import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Utils.Calendar;
 import com.barbershop.api.Utils.CombineObjects;
 import com.barbershop.api.Utils.Responses;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -122,10 +123,12 @@ public class BarberShopController {
     //endregion
 
     //region Get barber schedule of the day
-    @RequestMapping(value = "/{id}/barber/{idbarber}", method = RequestMethod.POST)
-    public ResponseEntity<List<Map<String, Object>>> scheduleOfBarber(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber, @RequestBody String dateTime) {
+    @RequestMapping(value = "/{id}/barber/{idbarber}", method = RequestMethod.GET, params = "datetime", produces = "application/json")
+    public ResponseEntity<String> scheduleOfBarber(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber, @RequestParam String datetime) {
         try {
-            return new ResponseEntity<>(Responses.buildReturnListFromMap(historyRepository.historyByShopBarberAndDate(id, idbarber, dateTime + "%")), HttpStatus.OK);
+            Map<String, Object> entity = Responses.buildReturnObjectFromMap(this.repository.findBarberShopRelation(id, idbarber));
+            List<Map<String, Object>> dayReservations = Responses.buildReturnListFromMap(historyRepository.historyByShopBarberAndDate(id, idbarber, datetime + "%"));
+            return new ResponseEntity<>(Calendar.generateCalendarFromDBString((String) entity.get("schedule"), dayReservations).toString(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -137,7 +140,7 @@ public class BarberShopController {
     public ResponseEntity<Map<String, Object>> getBarberRelation(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber) {
         try {
             Map<String, Object> entity = Responses.buildReturnObjectFromMap(this.repository.findBarberShopRelation(id, idbarber));
-            entity.put("schedule",Calendar.generateCalendarFromDBString((String) entity.get("schedule")).toString());
+            entity.put("schedule", Calendar.generateCalendarFromDBString((String) entity.get("schedule"), null).toString());
             return new ResponseEntity<>(entity, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -23,7 +23,7 @@ Listagens:
         (DONE) - (6)Get schedule per loja = (5) InnerJoin Barbeiro.Schedule
         (7)Get availability per day = (6) except (4) to get available Dates -- Pode ser feito na aplicação
         (DONE) - (8)Get client calendar = Query Over history where clientId = x
-        (9) - Get services by shop
+        (DONE) - (9) - Get services by shop
 
 Acho que com estas tabelas � possivel termos todas as queries que precisamos
 Se acharmos que o history vai ficar muito grande podemos sempre meter um
@@ -31,6 +31,9 @@ history por loja
 E criar uma tabela ClientLoja para saber em que lojas o cliente tem marca��es
 ativas assim sabemos a quais dos histories ir
 
-É preciso tratar de segurança authentication e autorization
+
 
 TODO: relation between services and barbers
+TODO: barbers need to have the ability to have different schedules for different weekdays
+TODO: Barbers and shops need to have ability to be on vacation
+TODO: É preciso tratar de segurança authentication e autorization
