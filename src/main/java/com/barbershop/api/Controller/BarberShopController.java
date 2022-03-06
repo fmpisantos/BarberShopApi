@@ -2,8 +2,6 @@
 package com.barbershop.api.Controller;
 
 import com.barbershop.api.Models.Client.Client;
-import com.barbershop.api.Models.Relations.History;
-import com.barbershop.api.Models.Relations.ShopBarber;
 import com.barbershop.api.Models.Shop.BarberShop;
 import com.barbershop.api.Repositories.IBarberShopInstanceRepository;
 import com.barbershop.api.Repositories.IBarberShopRepository;
@@ -11,7 +9,6 @@ import com.barbershop.api.Repositories.IClientRepository;
 import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Utils.CombineObjects;
 import com.barbershop.api.Utils.Responses;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -146,7 +142,7 @@ public class BarberShopController {
     }
     //endregion
 
-    //region Get Barber info for this shop
+    //region List Schedules
     @RequestMapping(value = "/{id}/schedule", method = RequestMethod.GET)
     public ResponseEntity<List<Map<String, Object>>> listSchedules(@PathVariable("id") Long id) {
         try {

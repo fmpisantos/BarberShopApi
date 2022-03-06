@@ -1,9 +1,9 @@
 package com.barbershop.api.Models.Relations;
 
-        import com.barbershop.api.Models.BaseModel;
+import com.barbershop.api.Models.BaseModel;
 
-        import javax.persistence.Entity;
-        import java.util.Date;
+import javax.persistence.Entity;
+import java.util.Date;
 
 @Entity
 public class BarberServices extends BaseModel {

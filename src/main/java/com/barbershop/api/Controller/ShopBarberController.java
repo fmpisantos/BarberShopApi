@@ -4,10 +4,8 @@ package com.barbershop.api.Controller;
 import com.barbershop.api.Models.Relations.ShopBarber;
 import com.barbershop.api.Repositories.IBarberRepository;
 import com.barbershop.api.Repositories.IBarberShopRepository;
-import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Repositories.IShopBarberRepository;
 import com.barbershop.api.Utils.CombineObjects;
-import com.barbershop.api.Utils.Responses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,8 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -83,7 +79,11 @@ public class ShopBarberController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         barber.modifiedUtc = new Date();
-        this.repository.save(barber);
+        try {
+            this.repository.save(barber);
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
     //endregion
