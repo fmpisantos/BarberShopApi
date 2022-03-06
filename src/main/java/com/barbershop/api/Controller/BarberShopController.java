@@ -7,6 +7,7 @@ import com.barbershop.api.Repositories.IBarberShopInstanceRepository;
 import com.barbershop.api.Repositories.IBarberShopRepository;
 import com.barbershop.api.Repositories.IClientRepository;
 import com.barbershop.api.Repositories.IHistoryRepository;
+import com.barbershop.api.Utils.Calendar;
 import com.barbershop.api.Utils.CombineObjects;
 import com.barbershop.api.Utils.Responses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,9 +134,11 @@ public class BarberShopController {
 
     //region Get Barber info for this shop
     @RequestMapping(value = "/{id}/barber/{idbarber}", method = RequestMethod.GET)
-    public ResponseEntity<List<Map<String, Object>>> getBarberRelation(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber) {
+    public ResponseEntity<Map<String, Object>> getBarberRelation(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber) {
         try {
-            return new ResponseEntity<>(Responses.buildReturnListFromMap(this.repository.findBarberShopRelation(id, idbarber)), HttpStatus.OK);
+            Map<String, Object> entity = Responses.buildReturnObjectFromMap(this.repository.findBarberShopRelation(id, idbarber));
+            entity.put("schedule",Calendar.generateCalendarFromDBString((String) entity.get("schedule")).toString());
+            return new ResponseEntity<>(entity, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

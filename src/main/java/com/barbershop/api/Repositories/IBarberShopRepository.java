@@ -14,8 +14,8 @@ public interface IBarberShopRepository extends JpaRepository<BarberShop, Long> {
             "FROM shop_barber SB " +
             "INNER JOIN barber B ON B.id = SB.barber_id " +
             "INNER JOIN barber_shop BS ON BS.id = shop_id " +
-            "WHERE SB.shop_id = :shopId AND SB.barber_id = :barberId AND SB.active = true AND BS.active = true and B.active = true", nativeQuery = true)
-    List<Map<String, Object>> findBarberShopRelation(Long shopId, Long barberId);
+            "WHERE SB.shop_id = :shopId AND SB.barber_id = :barberId limit 1", nativeQuery = true)
+    Map<String, Object> findBarberShopRelation(Long shopId, Long barberId);
 
     @Query(value = "SELECT SB.schedule, SB.photo, B.name as barberName, BS.public_name as shopName " +
             "FROM shop_barber SB " +

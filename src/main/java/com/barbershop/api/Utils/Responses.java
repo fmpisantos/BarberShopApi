@@ -16,37 +16,51 @@ public class Responses<T> {
 
     public static Map<String, Object> buildReturnObject(Object obj) throws IllegalAccessException {
         Map<String, Object> map = new HashMap<>();
-        for(Field field : obj.getClass().getFields())
-            if(!exclude.contains(field.getName()))
+        for (Field field : obj.getClass().getFields())
+            if (!exclude.contains(field.getName()))
                 map.put(field.getName(), field.get(obj));
+        return map;
+    }
+
+    public static Map<String, Object> buildReturnObjectFromMap(Map<String, Object> map, List<String> exclude) {
+        map = new HashMap<>(map);
+        for (String key : exclude)
+            map.remove(key);
+        return map;
+    }
+
+    public static Map<String, Object> buildReturnObjectFromMap(Map<String, Object> map) {
+        map = new HashMap<>(map);
+        for (String key : exclude)
+            map.remove(key);
         return map;
     }
 
     public static Map<String, Object> buildReturnObject(Object obj, List<String> exclude) throws IllegalAccessException {
         Map<String, Object> map = new HashMap<>();
-        for(Field field : obj.getClass().getFields())
-            if(!exclude.contains(field.getName()))
+        for (Field field : obj.getClass().getFields())
+            if (!exclude.contains(field.getName()))
                 map.put(field.getName(), field.get(obj));
         return map;
     }
 
-    public static List<Map<String,Object>> buildReturnList(List<Object> list) throws IllegalAccessException {
-        List<Map<String,Object>> returnList = new ArrayList<>();
-        for(Object o : list)
+    public static List<Map<String, Object>> buildReturnList(List<Object> list) throws IllegalAccessException {
+        List<Map<String, Object>> returnList = new ArrayList<>();
+        for (Object o : list)
             returnList.add(buildReturnObject(o));
         return returnList;
     }
 
-    public static List<Map<String,Object>> buildReturnList(List<Object> list, List<String> exclude) throws IllegalAccessException {
-        List<Map<String,Object>> returnList = new ArrayList<>();
-        for(Object o : list)
-            returnList.add(buildReturnObject(o,exclude));
+    public static List<Map<String, Object>> buildReturnList(List<Object> list, List<String> exclude) throws IllegalAccessException {
+        List<Map<String, Object>> returnList = new ArrayList<>();
+        for (Object o : list)
+            returnList.add(buildReturnObject(o, exclude));
         return returnList;
     }
 
-    public static List<Map<String,Object>> buildReturnListFromMap(List<Map<String,Object>> list){
-        List<Map<String,Object>> returnList = new ArrayList<>();
-        for(Map<String,Object> o : list) {
+    public static List<Map<String, Object>> buildReturnListFromMap(List<Map<String, Object>> list) {
+        List<Map<String, Object>> returnList = new ArrayList<>();
+        for (Map<String, Object> o : list) {
             o = new HashMap<>(o);
             for (String key : exclude)
                 o.remove(key);
@@ -55,9 +69,9 @@ public class Responses<T> {
         return returnList;
     }
 
-    public static List<Map<String,Object>> buildReturnListFromMap(List<Map<String,Object>> list, List<String> exclude){
-        List<Map<String,Object>> returnList = new ArrayList<>();
-        for(Map<String,Object> o : list) {
+    public static List<Map<String, Object>> buildReturnListFromMap(List<Map<String, Object>> list, List<String> exclude) {
+        List<Map<String, Object>> returnList = new ArrayList<>();
+        for (Map<String, Object> o : list) {
             o = new HashMap<>(o);
             for (String key : exclude)
                 o.remove(key);
