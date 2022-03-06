@@ -31,6 +31,7 @@ public class BarberShopInstanceController {
     //region Create
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Long> create(@RequestBody BarberShopInstance barber) {
+        barber.active = true;
         return new ResponseEntity<>(this.repository.save(barber).getId(), HttpStatus.OK);
     }
     //endregion

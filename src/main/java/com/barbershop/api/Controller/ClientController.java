@@ -3,7 +3,9 @@ package com.barbershop.api.Controller;
 
 import com.barbershop.api.Models.Client.Client;
 import com.barbershop.api.Repositories.IClientRepository;
+import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Utils.CombineObjects;
+import com.barbershop.api.Utils.Responses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -21,6 +25,10 @@ public class ClientController {
 
     @Autowired
     private IClientRepository repository;
+
+
+    @Autowired
+    private IHistoryRepository historyRepository;
 
     //region List
     @RequestMapping(method = RequestMethod.GET)
@@ -32,8 +40,7 @@ public class ClientController {
     //region Create
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Long> create(@RequestBody Client barber) {
-        //barber.createdUtc = new Date();
-        //barber.modifiedUtc = new Date();
+        barber.active = true;
         return new ResponseEntity<>(this.repository.save(barber).getId(), HttpStatus.OK);
     }
     //endregion
@@ -74,6 +81,17 @@ public class ClientController {
         barber.active = false;
         this.repository.save(barber);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    //endregion
+
+    //region Get client history
+    @RequestMapping(value = "/{id}/history", method = RequestMethod.POST)
+    public ResponseEntity<List<Map<String, Object>>> schedule(@PathVariable("id") Long id, @RequestBody String dateTime) {
+        try {
+            return new ResponseEntity<>(Responses.buildReturnListFromMap(historyRepository.historyByClientAndDate(id, dateTime + "%")), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     //endregion
 }

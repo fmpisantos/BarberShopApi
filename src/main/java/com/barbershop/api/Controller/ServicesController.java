@@ -36,8 +36,7 @@ public class ServicesController {
     //region Create
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Long> create(@RequestBody Services barber) {
-        //barber.createdUtc = new Date();
-        //barber.modifiedUtc = new Date();
+        barber.active = true;
         Optional entity = shopRepo.findById(barber.shopId);
         if(entity.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

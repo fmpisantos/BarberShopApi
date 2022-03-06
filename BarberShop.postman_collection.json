@@ -126,6 +126,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Calendar for the day",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "2022-03-05",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbers/1/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbers",
+								"1",
+								"history"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -265,6 +293,102 @@
 								"barbershop",
 								"1",
 								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Calendar for the day",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "2022-03-05",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbershop/1/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Barber Schedule",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "2022-03-05",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/barbershop/1/barber/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1",
+								"barber",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shop Barber Relation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershop/1/barber/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1",
+								"barber",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shop Barber Schedule",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/barbershop/1/schedule",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"barbershop",
+								"1",
+								"schedule"
 							]
 						}
 					},
@@ -513,6 +637,29 @@
 							"path": [
 								"client",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get History",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "2022-03-05"
+						},
+						"url": {
+							"raw": "{{url}}/client/1/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"client",
+								"1",
+								"history"
 							]
 						}
 					},

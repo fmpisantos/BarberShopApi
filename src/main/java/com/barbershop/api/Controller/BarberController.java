@@ -2,7 +2,9 @@ package com.barbershop.api.Controller;
 
 import com.barbershop.api.Models.Barber.Barber;
 import com.barbershop.api.Repositories.IBarberRepository;
+import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Utils.CombineObjects;
+import com.barbershop.api.Utils.Responses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +24,9 @@ public class BarberController {
 
     @Autowired
     private IBarberRepository barberRepository;
+
+    @Autowired
+    private IHistoryRepository historyRepository;
 
     //region List
     @RequestMapping(method = RequestMethod.GET)
@@ -31,8 +38,7 @@ public class BarberController {
     //region Create
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Long> create(@RequestBody Barber barber) {
-        //barber.createdUtc = new Date();
-        //barber.modifiedUtc = new Date();
+        barber.active = true;
         return new ResponseEntity<>(this.barberRepository.save(barber).getId(), HttpStatus.OK);
     }
     //endregion
@@ -73,6 +79,13 @@ public class BarberController {
         barber.active = false;
         this.barberRepository.save(barber);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    //endregion
+
+    //region Get Schedule of the day
+    @RequestMapping(value="/{id}/history", method = RequestMethod.POST)
+    public ResponseEntity<List<Map<String, Object>>> schedule(@PathVariable("id") Long id, @RequestBody String dateTime){
+        return new ResponseEntity<>(Responses.buildReturnListFromMap(historyRepository.historyByBarberAndDate(id, dateTime+"%")), HttpStatus.OK);
     }
     //endregion
 }

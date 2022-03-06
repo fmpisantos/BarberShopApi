@@ -15,14 +15,13 @@ Tables:
 
 Listagens: 
         (DONE) - (1)Clientes por Loja = Query over history where loja = x with distinct ClientId
-        (2)Calendario por loja = Query over history where loja = x and datetime = y
-        (3)Calendario por barbeiro = Query over history where barber = x and datetime = y
-        (4)Calendario por barbeiro e loja = Query over history where barber = x and loja = y and datetime = z
-        (5)Get Loja barbers = Query over LojaBarber where LojaId = x and BarberId = y
-        (6)Get schedule per loja = (5) InnerJoin Barbeiro.Schedule
-        (7)Get availability per day = (6) except (4) to get available Dates
-        (8)Get cliend calendar = Query Over history where clientId = x
-
+        (DONE) - (2)Calendario por loja = Query over history where loja = x and datetime = y
+        (DONE) - (3)Calendario por barbeiro = Query over history where barber = x and datetime = y
+        (DONE) - (4)Calendario por barbeiro e loja = Query over history where barber = x and loja = y and datetime = z
+        (DONE) - (5) Get Loja barbers = Query over LojaBarber where LojaId = x and BarberId = y
+        (DONE) - (6)Get schedule per loja = (5) InnerJoin Barbeiro.Schedule
+        (7)Get availability per day = (6) except (4) to get available Dates -- Pode ser feito na aplicação
+        (DONE) - (8)Get client calendar = Query Over history where clientId = x
 
 Acho que com estas tabelas � possivel termos todas as queries que precisamos
 Se acharmos que o history vai ficar muito grande podemos sempre meter um

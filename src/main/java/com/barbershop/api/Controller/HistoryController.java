@@ -43,8 +43,7 @@ public class HistoryController {
     //region Create
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Long> create(@RequestBody History barber) {
-        //barber.createdUtc = new Date();
-        //barber.modifiedUtc = new Date();
+        barber.active = true;
         Optional entity = serviceRepo.findById(barber.serviceId);
         if (entity.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
