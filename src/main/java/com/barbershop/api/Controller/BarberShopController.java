@@ -1,6 +1,7 @@
 
 package com.barbershop.api.Controller;
 
+import com.barbershop.api.Configuration;
 import com.barbershop.api.Models.Client.Client;
 import com.barbershop.api.Models.Shop.BarberShop;
 import com.barbershop.api.Repositories.IBarberShopInstanceRepository;
@@ -123,12 +124,22 @@ public class BarberShopController {
     //endregion
 
     //region Get barber schedule of the day
-    @RequestMapping(value = "/{id}/barber/{idbarber}", method = RequestMethod.GET, params = "datetime", produces = "application/json")
+    @RequestMapping(value = "/{id}/barber/{idbarber}", method = RequestMethod.GET, params = { "datetime", "duraction" }, produces = "application/json")
+    public ResponseEntity<String> scheduleOfBarber(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber, @RequestParam String datetime, @RequestParam(required = false) int duraction) {
+        try {
+            Map<String, Object> entity = Responses.buildReturnObjectFromMap(this.repository.findBarberShopRelation(id, idbarber));
+            List<Map<String, Object>> dayReservations = Responses.buildReturnListFromMap(historyRepository.historyByShopBarberAndDate(id, idbarber, datetime + "%"));
+            return new ResponseEntity<>(Calendar.generateCalendarFromDBString((String) entity.get("schedule"), dayReservations, Configuration.defaultDuration).toString(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @RequestMapping(value = "/{id}/barber/{idbarber}", method = RequestMethod.GET, params = { "datetime" }, produces = "application/json")
     public ResponseEntity<String> scheduleOfBarber(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber, @RequestParam String datetime) {
         try {
             Map<String, Object> entity = Responses.buildReturnObjectFromMap(this.repository.findBarberShopRelation(id, idbarber));
             List<Map<String, Object>> dayReservations = Responses.buildReturnListFromMap(historyRepository.historyByShopBarberAndDate(id, idbarber, datetime + "%"));
-            return new ResponseEntity<>(Calendar.generateCalendarFromDBString((String) entity.get("schedule"), dayReservations).toString(), HttpStatus.OK);
+            return new ResponseEntity<>(Calendar.generateCalendarFromDBString((String) entity.get("schedule"), dayReservations, Configuration.defaultDuration).toString(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -140,7 +151,7 @@ public class BarberShopController {
     public ResponseEntity<Map<String, Object>> getBarberRelation(@PathVariable("id") Long id, @PathVariable("idbarber") Long idbarber) {
         try {
             Map<String, Object> entity = Responses.buildReturnObjectFromMap(this.repository.findBarberShopRelation(id, idbarber));
-            entity.put("schedule", Calendar.generateCalendarFromDBString((String) entity.get("schedule"), null).toString());
+            entity.put("schedule", Calendar.generateCalendarFromDBString((String) entity.get("schedule"), null, Configuration.defaultDuration).toString());
             return new ResponseEntity<>(entity, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

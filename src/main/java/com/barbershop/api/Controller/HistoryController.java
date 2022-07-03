@@ -11,8 +11,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import static com.barbershop.api.Utils.Calendar.fromDateToDateTime;
 
 @RestController
 @RequestMapping("history")
@@ -59,7 +65,8 @@ public class HistoryController {
         entity = clientRepo.findById(barber.clientId);
         if (entity.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+        if(!repository.checkAvailability(barber.shopId, fromDateToDateTime(barber.dateTime) + "%", barber.barberId).isEmpty())
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         return new ResponseEntity<>(this.repository.save(barber).getId(), HttpStatus.OK);
     }
     //endregion
