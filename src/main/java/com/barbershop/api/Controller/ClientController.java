@@ -2,9 +2,11 @@
 package com.barbershop.api.Controller;
 
 import com.barbershop.api.Models.Client.Client;
+import com.barbershop.api.Models.LoginIds.LoginIds;
 import com.barbershop.api.Repositories.IBarberRepository;
 import com.barbershop.api.Repositories.IClientRepository;
 import com.barbershop.api.Repositories.IHistoryRepository;
+import com.barbershop.api.Repositories.ILoginIdsRepository;
 import com.barbershop.api.Utils.CombineObjects;
 import com.barbershop.api.Utils.Responses;
 import org.json.JSONObject;
@@ -31,6 +33,8 @@ public class ClientController {
     private IHistoryRepository historyRepository;
     @Autowired
     private IBarberRepository barberRepository;
+    @Autowired
+    private ILoginIdsRepository loginIdsRepository;
 
     //region List
     @RequestMapping(method = RequestMethod.GET)
@@ -41,17 +45,29 @@ public class ClientController {
 
     //region Create
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> create(@RequestBody Client client, @RequestParam String type) {
+    public ResponseEntity<String> create(@RequestBody Client client, @RequestParam(value = "type", required = true) String type) {
+        Long id;
         client.active = true;
         if(client.barberId != null){
             Optional barber = this.barberRepository.findById(client.barberId);
             if(barber.isEmpty())
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        List<LoginIds> clientId = this.loginIdsRepository.findByTypeAndId(type,client.phone);
+        if(!clientId.isEmpty()){
+            id = clientId.get(0).getId();
+            Client c = this.repository.findById(id).get();
+            return new ResponseEntity<>(new JSONObject().put("id",id).put("name", c.getName()).toString(), HttpStatus.OK);
+        }
         List<Client> entity = this.repository.findByNameAndPhone(client.name, client.phone);
-        if (!entity.isEmpty())
-            return new ResponseEntity<>(new JSONObject().put("id",entity.get(0).getId()).toString(), HttpStatus.OK);
-        return new ResponseEntity<>(new JSONObject().put("id",this.repository.save(client).getId()).toString(), HttpStatus.OK);
+        if (!entity.isEmpty()) {
+            Client c = entity.get(0);
+            return new ResponseEntity<>(new JSONObject().put("id", c.getId()).put("name", c.getName()).toString(), HttpStatus.OK);
+        }
+        id = this.repository.save(client).getId();
+        if(type.equalsIgnoreCase("google") || type.equalsIgnoreCase("apple"))
+            this.loginIdsRepository.save(new LoginIds(type,id, client.getPhone()));
+        return new ResponseEntity<>(new JSONObject().put("id",id).put("name",client.getName()).toString(), HttpStatus.OK);
     }
     //endregion
 
