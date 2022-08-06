@@ -2,10 +2,12 @@
 package com.barbershop.api.Controller;
 
 import com.barbershop.api.Models.Client.Client;
+import com.barbershop.api.Repositories.IBarberRepository;
 import com.barbershop.api.Repositories.IClientRepository;
 import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Utils.CombineObjects;
 import com.barbershop.api.Utils.Responses;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,10 +27,10 @@ public class ClientController {
 
     @Autowired
     private IClientRepository repository;
-
-
     @Autowired
     private IHistoryRepository historyRepository;
+    @Autowired
+    private IBarberRepository barberRepository;
 
     //region List
     @RequestMapping(method = RequestMethod.GET)
@@ -39,9 +41,17 @@ public class ClientController {
 
     //region Create
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Long> create(@RequestBody Client barber) {
-        barber.active = true;
-        return new ResponseEntity<>(this.repository.save(barber).getId(), HttpStatus.OK);
+    public ResponseEntity<String> create(@RequestBody Client client, @RequestParam String type) {
+        client.active = true;
+        if(client.barberId != null){
+            Optional barber = this.barberRepository.findById(client.barberId);
+            if(barber.isEmpty())
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        List<Client> entity = this.repository.findByNameAndPhone(client.name, client.phone);
+        if (!entity.isEmpty())
+            return new ResponseEntity<>(new JSONObject().put("id",entity.get(0).getId()).toString(), HttpStatus.OK);
+        return new ResponseEntity<>(new JSONObject().put("id",this.repository.save(client).getId()).toString(), HttpStatus.OK);
     }
     //endregion
 

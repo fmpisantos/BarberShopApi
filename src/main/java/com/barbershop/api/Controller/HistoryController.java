@@ -1,8 +1,12 @@
 package com.barbershop.api.Controller;
 
+import com.barbershop.api.Models.Client.Client;
 import com.barbershop.api.Models.Relations.History;
 import com.barbershop.api.Repositories.*;
 import com.barbershop.api.Utils.CombineObjects;
+import com.barbershop.api.Utils.Responses;
+import org.apache.coyote.Request;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -125,4 +129,18 @@ public class HistoryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     //endregion
+
+    //region Get Schedule of the day of user
+    @RequestMapping(value="/{id}", method = RequestMethod.POST)
+    public ResponseEntity<List<Map<String, Object>>> schedule(@PathVariable("id") Long id, @RequestBody String dateTime){
+        Optional<Client> user = this.clientRepo.findById(id);
+        if(!this.clientRepo.findById(id).isEmpty())
+            if(user.get().barberId != null)
+                return new ResponseEntity<>(Responses.buildReturnListFromMap(this.repository.historyByBarberAndDate(id, dateTime+"%")), HttpStatus.OK);
+            else
+                return new ResponseEntity<>(Responses.buildReturnListFromMap(this.repository.historyByClientAndDate(id, dateTime+"%")), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    //endregion
+
 }

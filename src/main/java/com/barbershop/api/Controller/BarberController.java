@@ -1,7 +1,9 @@
 package com.barbershop.api.Controller;
 
 import com.barbershop.api.Models.Barber.Barber;
+import com.barbershop.api.Models.Client.Client;
 import com.barbershop.api.Repositories.IBarberRepository;
+import com.barbershop.api.Repositories.IClientRepository;
 import com.barbershop.api.Repositories.IHistoryRepository;
 import com.barbershop.api.Utils.CombineObjects;
 import com.barbershop.api.Utils.Responses;
@@ -28,6 +30,9 @@ public class BarberController {
     @Autowired
     private IHistoryRepository historyRepository;
 
+    @Autowired
+    private IClientRepository clientRepository;
+
     //region List
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Page<Barber>> list(@RequestParam(value = "sortby", required = false) String sortBy, @RequestParam(value = "start", required = false) Integer start, @RequestParam(value = "end", required = false) Integer end) {
@@ -39,7 +44,9 @@ public class BarberController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Long> create(@RequestBody Barber barber) {
         barber.active = true;
-        return new ResponseEntity<>(this.barberRepository.save(barber).getId(), HttpStatus.OK);
+        barber.id = this.barberRepository.save(barber).getId();
+        this.clientRepository.save(new Client(barber));
+        return new ResponseEntity<>(barber.id, HttpStatus.OK);
     }
     //endregion
 
