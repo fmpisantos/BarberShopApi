@@ -55,7 +55,7 @@ public class ClientController {
         }
         List<LoginIds> clientId = this.loginIdsRepository.findByTypeAndId(type,client.phone);
         if(!clientId.isEmpty()){
-            id = clientId.get(0).getId();
+            id = clientId.get(0).getClientId();
             Client c = this.repository.findById(id).get();
             return new ResponseEntity<>(new JSONObject().put("id",id).put("name", c.getName()).toString(), HttpStatus.OK);
         }
