@@ -29,9 +29,11 @@ public interface IBarberShopRepository extends JpaRepository<BarberShop, Long> {
             "WHERE S.shop_id = :shopId", nativeQuery = true)
     List<Map<String, Object>> listServices(Long shopId);
 
-    @Query(value = "SELECT B.* " +
+    @Query(value = "SELECT B.*, CAST(json_agg(BS.service_id) as varchar) as services " +
             "FROM Barber B " +
             "INNER JOIN shop_barber SB ON SB.barber_id = B.id " +
-            "WHERE SB.shop_id = :shopId", nativeQuery = true)
+            "LEFT JOIN barber_services BS ON BS.barber_id = B.id " +
+            "WHERE SB.shop_id = :shopId " +
+            "GROUP BY B.id", nativeQuery = true)
     List<Map<String, Object>> listBarbers(Long shopId);
 }

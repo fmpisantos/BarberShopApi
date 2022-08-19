@@ -33,9 +33,6 @@ ativas assim sabemos a quais dos histories ir
 
 
 
-TODO: relation between services and barbers
 TODO: barbers need to have the ability to have different schedules for different weekdays
 TODO: Barbers and shops need to have ability to be on vacation
 TODO: É preciso tratar de segurança authentication e authorization
-TODO: Verifications when clients are making reservations
-TODO: Schedule needs to have in count the amount of time that is available and the amount of time that the service will take

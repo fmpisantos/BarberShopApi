@@ -1,5 +1,7 @@
 package com.barbershop.api.Utils;
 
+import org.json.JSONArray;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;

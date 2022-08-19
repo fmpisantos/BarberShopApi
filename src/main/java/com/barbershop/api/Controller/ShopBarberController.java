@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("shopbarber")
 public class ShopBarberController {
 

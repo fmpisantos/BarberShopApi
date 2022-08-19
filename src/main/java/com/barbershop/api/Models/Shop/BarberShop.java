@@ -5,6 +5,7 @@ import com.barbershop.api.Models.BaseModel;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table

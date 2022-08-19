@@ -8,13 +8,14 @@ import java.util.Date;
 @Entity
 public class Services extends BaseModel {
     /*
+    Url is the service photoUrl
     Duration is given in minutes
     Price is given in euros
      */
     public Long shopId;
     public Integer duration;
     public float price;
-    public String name;
+    public String name, url;
 
     public Services(long id, boolean active, Long shopId, Integer duration, float price, String name) {
         super(id, active);
@@ -22,6 +23,15 @@ public class Services extends BaseModel {
         this.duration = duration;
         this.price = price;
         this.name = name;
+    }
+
+    public Services(long id, boolean active, Long shopId, Integer duration, float price, String name, String url) {
+        super(id, active);
+        this.shopId = shopId;
+        this.duration = duration;
+        this.price = price;
+        this.name = name;
+        this.url = url;
     }
 
     public Services() {
@@ -35,12 +45,30 @@ public class Services extends BaseModel {
         this.name = name;
     }
 
+    public Services(boolean active, Long shopId, Integer duration, float price, String name, String url) {
+        super(active);
+        this.shopId = shopId;
+        this.duration = duration;
+        this.price = price;
+        this.name = name;
+        this.url = url;
+    }
+
     public Services(long id, boolean active, Date createdUtc, Date modifiedUtc, Long shopId, Integer duration, float price, String name) {
         super(id, active, createdUtc, modifiedUtc);
         this.shopId = shopId;
         this.duration = duration;
         this.price = price;
         this.name = name;
+    }
+
+    public Services(long id, boolean active, Date createdUtc, Date modifiedUtc, Long shopId, Integer duration, float price, String name, String url) {
+        super(id, active, createdUtc, modifiedUtc);
+        this.shopId = shopId;
+        this.duration = duration;
+        this.price = price;
+        this.name = name;
+        this.url = url;
     }
 
     public Long getShopId() {
@@ -73,5 +101,17 @@ public class Services extends BaseModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 }

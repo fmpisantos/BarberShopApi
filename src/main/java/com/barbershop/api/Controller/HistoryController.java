@@ -25,6 +25,7 @@ import java.util.Optional;
 import static com.barbershop.api.Utils.Calendar.fromDateToDateTime;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("history")
 public class HistoryController {
 
